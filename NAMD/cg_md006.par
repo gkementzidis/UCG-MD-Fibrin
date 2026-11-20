@@ -1,0 +1,66 @@
+* Parameter file in the CG representation
+* Generated using the networking algorithm developed
+* in the Klaus Schulten group (Theoretical and
+* Computational Biophysics Group; www.ks.uiuc.edu)
+* Contact vmd@ks.uiuc.edu with questions
+
+BONDS
+!
+
+!V(bond) = Kb(b - b0)**2 
+! 
+!Kb: kcal/mole/A**2 
+!b0: A 
+! 
+!atom type Kb          b0 
+! 
+
+ANGLES 
+! 
+!V(angle) = Ktheta(Theta - Theta0)**2 
+! 
+!Ktheta: kcal/mole/rad**2 
+!Theta0: degrees 
+! 
+!atom types     Ktheta    Theta0 
+! 
+
+DIHEDRALS 
+! 
+!V(dihedral) = Kchi(1 + cos(n(chi) - delta)) 
+! 
+!Kchi: kcal/mole 
+!n: multiplicity 
+!delta: degrees 
+! 
+!atom types             Kchi    n   delta 
+! 
+X    X    X    X    0.0        1     0.0 ! No dihedrals 
+
+NONBONDED 
+! 
+!V(Lennard-Jones) = Eps,i,j[(Rmin,i,j/ri,j)**12 - 2(Rmin,i,j/ri,j)**6] 
+! 
+!epsilon: kcal/mole, Eps,i,j = sqrt(eps,i * eps,j) 
+!Rmin/2: A, Rmin,i,j = Rmin/2,i + Rmin/2,j 
+! 
+!atom  ignored    epsilon      Rmin/2 
+! 
+B1     0.000000  -4.000000   20.376232
+B2     0.000000  -4.000000   24.070055
+B3     0.000000  -4.000000   19.610963
+B4     0.000000  -4.000000   21.904530
+B5     0.000000  -4.000000   26.671832
+B6     0.000000  -4.000000   20.892701
+B7     0.000000  -4.000000   19.280576
+B8     0.000000  -4.000000   27.285100
+B9     0.000000  -4.000000   21.892176
+B10    0.000000  -4.000000   21.260773
+B11    0.000000  -4.000000   20.591454
+B12    0.000000  -4.000000   24.042153
+B13    0.000000  -4.000000   18.859994
+B14    0.000000  -4.000000   19.611771
+B15    0.000000  -4.000000   23.630543
+
+END
+

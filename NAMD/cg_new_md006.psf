@@ -1,0 +1,62 @@
+PSF
+
+       1 !NTITLE
+ REMARKS VMD-generated NAMD/X-Plor PSF structure file
+
+      15 !NATOM
+       1 P    1    FUP  B1   B1                0            12       0
+       2 P    1    FUP  B2   B2                0            12       0
+       3 P    1    FUP  B3   B3                0            12       0
+       4 P    1    FUP  B4   B4                0            12       0
+       5 P    1    FUP  B5   B5                0            12       0
+       6 P    1    FUP  B6   B6                0            12       0
+       7 P    1    FUP  B7   B7                0            12       0
+       8 P    1    FUP  B8   B8                0            12       0
+       9 P    1    FUP  B9   B9                0            12       0
+      10 P    1    FUP  B10  B10               0            12       0
+      11 P    1    FUP  B11  B11               0            12       0
+      12 P    1    FUP  B12  B12               0            12       0
+      13 P    1    FUP  B13  B13               0            12       0
+      14 P    1    FUP  B14  B14               0            12       0
+      15 P    1    FUP  B15  B15               0            12       0
+
+      14 !NBOND: bonds
+       1       8       2       4       2      15       3      13
+       3      12       5       8       5      12       6       9
+       6      14       7      10       7      11       9      11
+       9      15      10      12
+
+      15 !NTHETA: angles
+       4       2      15      12       3      13       8       5      12
+       9       6      14      10       7      11       1       8       5
+       6       9      11      11       9      15       6       9      15
+       7      10      12       7      11       9       3      12       5
+       5      12      10       3      12      10       2      15       9
+
+      16 !NPHI: dihedrals
+       4       2      15       9      13       3      12       5
+      13       3      12      10      12       5       8       1
+       8       5      12       3       8       5      12      10
+      14       6       9      11      14       6       9      15
+      11       7      10      12      10       7      11       9
+       6       9      11       7      15       9      11       7
+      11       9      15       2       6       9      15       2
+       7      10      12       5       7      10      12       3
+
+       0 !NIMPHI: impropers
+
+
+       0 !NDON: donors
+
+
+       0 !NACC: acceptors
+
+
+       0 !NNB
+
+       0       0       0       0       0       0       0       0
+       0       0       0       0       0       0       0
+
+       1       0 !NGRP
+       0       0       0
+

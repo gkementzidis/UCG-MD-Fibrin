@@ -1,0 +1,45 @@
+* Topology file in CG representation
+* Generated using the networking algorithm developed
+* in the Klaus Schulten group (Theoretical and
+* Computational Biophysics Group; www.ks.uiuc.edu)
+* Contact vmd@ks.uiuc.edu with questions
+
+27 1
+
+MASS         1      B1    24144.8571
+MASS         2      B2     7361.4095
+MASS         3      B3    33107.7518
+MASS         4      B4    23541.1883
+MASS         5      B5     6813.8406
+MASS         6      B6    35392.4630
+MASS         7      B7    22363.2593
+MASS         8      B8     4114.1118
+MASS         9      B9    21715.6031
+MASS        10     B10    15531.9626
+MASS        11     B11    14748.3018
+MASS        12     B12    26495.0697
+MASS        13     B13    30070.9759
+MASS        14     B14    32640.7550
+MASS        15     B15     8529.8542
+
+DEFA FIRS NONE LAST NONE
+AUTO ANGLES
+
+RESI FUP       0.000000
+ATOM      B1      B1      0.000000
+ATOM      B2      B2      0.000000
+ATOM      B3      B3      0.000000
+ATOM      B4      B4      0.000000
+ATOM      B5      B5      0.000000
+ATOM      B6      B6      0.000000
+ATOM      B7      B7      0.000000
+ATOM      B8      B8      0.000000
+ATOM      B9      B9      0.000000
+ATOM     B10     B10      0.000000
+ATOM     B11     B11      0.000000
+ATOM     B12     B12      0.000000
+ATOM     B13     B13      0.000000
+ATOM     B14     B14      0.000000
+ATOM     B15     B15      0.000000
+END
+
