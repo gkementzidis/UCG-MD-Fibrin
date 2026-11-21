@@ -1,0 +1,105 @@
+variable emax equal 1.4 
+variable damp equal 3000.0 
+variable dynbond equal 47.0
+variable alphac equal 52.0
+variable dielectric equal 0.001 
+variable debye equal 0.0 
+variable cutoff_knob equal 150.0
+variable cutoff_lj equal 250.0
+
+variable path string ./
+
+variable random_seed equal 174
+
+variable data_file string fibrin_monomers_charge_1.data
+# variable data_file string output_data_01/fibri-100000000.data
+
+# ---------- Manually Adjustable Parameters ----------
+variable tsval equal 100.0
+variable temperature equal 310
+variable restartstep equal 1000000
+variable runstep equal 100000000
+
+variable restart_dir string output_restart_01/
+
+# ---------- Units & Setup ----------
+neigh_modify delay 0 every 10 check yes
+newton on
+units real
+dimension 3
+boundary p p p
+atom_style full
+neighbor 300 multi                                  # create "neighbors" list 100 Angstrom beyong the cutoff
+comm_modify vel yes
+comm_modify cutoff 600                              # required for bonded communication in UCG
+
+# ---------- Force Field ----------
+pair_style lj/cut/coul/debye ${cutoff_lj} ${cutoff_knob} ${debye}     # changed the cutoff to match the NAMD simulation
+pair_modify mix arithmetic shift yes                # apply shifting similar to switching in NAMD
+bond_style harmonic
+angle_style harmonic
+
+# ---------- Timestep ----------
+timestep ${tsval}
+
+# ---------- Topology ----------
+read_data ${data_file} extra/special/per/atom 50 extra/bond/per/atom 20
+
+# ---------- Pair Coefficients ----------
+# Pair coefficients (self-type only shown; cross-types auto-mixed; "arithmetic")
+
+variable eps01 equal v_emax*0.716370
+variable eps02 equal v_emax*0.665790
+variable eps03 equal v_emax*1.150332
+variable eps04 equal v_emax*0.726774
+variable eps05 equal v_emax*0.514724
+variable eps06 equal v_emax*1.171269
+variable eps07 equal v_emax*1.225603
+variable eps08 equal v_emax*0.675431
+variable eps09 equal v_emax*1.261166
+variable eps10 equal v_emax*0.939007
+variable eps11 equal v_emax*0.960667
+variable eps12 equal v_emax*1.309881
+variable eps13 equal v_emax*1.366455
+variable eps14 equal v_emax*1.355291
+variable eps15 equal v_emax*0.592003
+
+pair_coeff 1 1 ${eps01}   40.750542
+pair_coeff 2 2 ${eps02}   48.139740
+pair_coeff 3 3 ${eps03}   39.221608
+pair_coeff 4 4 ${eps04}   43.807728
+pair_coeff 5 5 ${eps05}   53.342846
+pair_coeff 6 6 ${eps06}   41.784714
+pair_coeff 7 7 ${eps07}   38.560066
+pair_coeff 8 8 ${eps08}   54.569648
+pair_coeff 9 9 ${eps09}   43.780006
+pair_coeff 10 10 ${eps10} 42.520904
+pair_coeff 11 11 ${eps11} 41.182540
+pair_coeff 12 12 ${eps12} 48.076138
+pair_coeff 13 13 ${eps13} 37.711372
+pair_coeff 14 14 ${eps14} 39.217862
+pair_coeff 15 15 ${eps15} 47.260246
+
+# ---------- Dielectric Handling ----------
+dielectric ${dielectric}
+
+# ---------- Thermostat ----------
+fix lang all langevin ${temperature} ${temperature} ${damp} ${random_seed}
+fix nve all nve
+
+# ---------- Fixes --------------- 
+fix ALPHAC all bond/create 1 1 4 ${alphac} 15 iparam 1 1 jparam 1 4 
+fix DE1 all bond/create 1 7 13 ${dynbond} 16 iparam 2 7 jparam 1 13 
+fix DE2 all bond/create 1 7 14 ${dynbond} 16 iparam 2 7 jparam 1 14
+
+# ---------- Output ----------
+restart ${restartstep} ${path}${restart_dir}fibri-*.restart
+
+# --------- Minimization ------
+min_style cg
+minimize 1e-4 1e-6 1000 10000
+velocity all create ${temperature} ${random_seed} mom yes rot yes dist gaussian
+
+# ---------- Run ----------
+# timer timeout 86000 every 1000       # timeout after ~24 hours; check every 1000 steps
+run ${runstep}
